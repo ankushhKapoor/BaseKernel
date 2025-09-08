@@ -1,6 +1,8 @@
 bits 16
 extern kernel_main
 extern interrupt_handler
+extern scheduler
+extern run_next_process
 
 start:
 	mov ax, cs
@@ -10,6 +12,7 @@ start:
 	call init_video_mode
 	call enter_protected_mode
 	call setup_interrupts
+	call load_task_register
 
 	call 08h:start_kernel
 
@@ -90,6 +93,12 @@ load_idt:
 	lidt [idtr - start]
 	ret
 
+load_task_register:
+	mov ax, 40d	; gdt table me 6th entry hai tss ki to 6*8 - 8 (as each entry is of 8 bytes) gives start of tss
+	ltr ax
+
+	ret
+
 bits 32
 start_kernel:
 	mov eax, 10h
@@ -107,3 +116,6 @@ start_kernel:
 
 %include "gdt.asm"
 %include "idt.asm"
+
+tss:
+	dd 0
