@@ -5,7 +5,9 @@ void process_init() {
 	curr_pid = 0;
 }
 
-void process_create(int *base_address, process_t *process) {
+process_t *process_create(int *base_address) {
+	process_t *process = kalloc(sizeof(process_t));
+
 	process->pid = curr_pid++;
 
 	process->context.eax = 0;
@@ -24,4 +26,6 @@ void process_create(int *base_address, process_t *process) {
 	processes[process->pid] = process;
 
 	processes_count++;
+
+	return process;
 }

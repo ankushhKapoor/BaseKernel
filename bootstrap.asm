@@ -28,7 +28,7 @@ load_kernel_from_disk:
 	mov cl, [curr_sector_to_load]
 	mov dh, 0h
 	mov dl, 80h
-	mov bx, 0h
+	; mov bx, 0h
 	int 13h
 
 	jc kernel_load_error
