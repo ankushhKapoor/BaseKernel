@@ -33,7 +33,7 @@ void kernel_main() {
 	process_create( &processD);
 	
 	char *data = kalloc(512);
-	strcpy(data, "The content of the first file on 539filesystem");	
+	strcpy(data, "FIRST FILE in 539filesystem");	
 	create_file("first_file", data);
 	
 	
@@ -46,7 +46,6 @@ void kernel_main() {
 	strcpy(data3, "THIRD FILE in 539filesystem");
 	create_file("third_file", data3);
 		
-	
 	print(read_file("first_file")); println();
 	print(read_file("second_file")); println();
 	print(read_file("third_file")); println();
@@ -65,8 +64,8 @@ void print_fs()
 	char **files = list_files();
 
 	for (int currIdx=0; currIdx<get_files_number(); currIdx++) {
-		print( "File: " );
-		print( files[ currIdx ] );
+		print("File: ");
+		print(files[currIdx] );
 		println();
 	}
 	

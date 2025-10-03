@@ -11,9 +11,9 @@ typedef struct process {
 	int *base_address;
 } process_t;
 
-extern process_t *processes[15];
+process_t *processes[15];
 
-extern int processes_count, curr_pid;
+int processes_count, curr_pid;
 
 void process_init();
 process_t *process_create(int *);

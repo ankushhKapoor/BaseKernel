@@ -2,36 +2,34 @@
 
 void filesystem_init()
 {
-	base_block = read_disk( BASE_BLOCK_ADDRESS );
+	base_block = read_disk(BASE_BLOCK_ADDRESS);
 }
 
-void update_base_block( int new_head, int new_tail )
+void update_base_block(int new_head, int new_tail)
 {
 	base_block->head = new_head;
 	base_block->tail = new_tail;
 	
-	write_disk( BASE_BLOCK_ADDRESS, base_block );
+	write_disk(BASE_BLOCK_ADDRESS, base_block);
 }
 
-metadata_t *load_metadata( int address )
+metadata_t *load_metadata(int address)
 {
-	metadata_t *metadata = read_disk( address );
+	metadata_t *metadata = read_disk(address);
 	
 	return metadata;
 }
 
 int get_files_number()
 {
-	if ( base_block->head == 0 )
+	if (base_block->head == 0)
 		return 0;
 	
 	int files_number = 0;
 	
-	// ... //
+	metadata_t *curr_file = load_metadata(base_block->head);
 	
-	metadata_t *curr_file = load_metadata( base_block->head );
-	
-	while ( 1 )
+	while (1)
 	{
 		files_number++;
 
@@ -53,21 +51,15 @@ void create_file( char *filename, char *buffer )
 	
 	metadata->next_file_address = 0;
 	
-	// ... //
-	
 	int currIdx;
 	
 	for ( currIdx = 0; *filename != '\0' && currIdx < FILENAME_LENGTH - 1; currIdx++, filename++ )
 		metadata->filename[ currIdx ] = *filename;
 	
 	metadata->filename[ currIdx ] = '\0';
-	
-	// ... //
-	
+
 	write_disk( metadata_lba, metadata );
 	write_disk( file_lba, buffer );
-	
-	// ... //
 	
 	if ( base_block->head == 0 )
 	{
@@ -171,8 +163,6 @@ void delete_file( char *filename )
 	
 	if ( curr_file_address == 0 )
 		return;
-		
-	// ... //
 	
 	if ( get_files_number() == 1 )
 	{

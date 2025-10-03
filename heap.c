@@ -1,6 +1,7 @@
 #include "heap.h"
 
-void kernel_init() {
+void heap_init()
+{
 	heap_base = 0x100000;
 }
 
