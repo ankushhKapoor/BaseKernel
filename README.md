@@ -3,7 +3,7 @@
 This is a custom 32-bit x86 protected-mode kernel built by following the 539kernel guide (A Journey in Creating an Operating System Kernel). It includes a simple bootloader, descriptor tables, interrupt handlers, and core OS features inspired by the 539kernel project.
 
 <div align="center">
-<img src="https://github.com/ankushhKapoor/BaseKerne/blob/main/ss.png" align="center" style="width: 80%" />
+<img src="https://github.com/ankushhKapoor/BaseKernel/blob/main/ss.png" align="center" style="width: 80%" />
 </div>
 
 **Features:** 
