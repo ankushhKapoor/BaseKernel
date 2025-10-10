@@ -1,4 +1,4 @@
-# MyKernel – 32-bit Educational OS (539kernel-based)
+# BaseKernel – My 32-bit simple Kernel
 
 This is a custom 32-bit x86 protected-mode kernel built by following the 539kernel guide (A Journey in Creating an Operating System Kernel). It includes a simple bootloader, descriptor tables, interrupt handlers, and core OS features inspired by the 539kernel project.
 
